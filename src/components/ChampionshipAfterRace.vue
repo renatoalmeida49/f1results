@@ -5,19 +5,20 @@
             color="lightenGray"
             dark
         >
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
+            <v-list-item
+                style="justify-content: center"
+                v-for="(driver, index) in drivers"
+                :key="index"
+            >
+                {{index + 1}} - {{driver.givenName}} {{driver.familyName}} - {{driver.points}}
+            </v-list-item>
         </v-card>
     </div>
 </template>
 
 <script>
 export default {
-    name: "ChampionshipAfterRace"
+    name: "ChampionshipAfterRace",
+    props: ['drivers']
 }
 </script>
