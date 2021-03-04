@@ -21,7 +21,7 @@ export default {
     },
     watch: {
         selected() {
-            this.$emit('year-selected')
+            this.$emit('year-selected', this.selected)
         }
     }
 }

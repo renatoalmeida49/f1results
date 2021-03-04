@@ -5,19 +5,21 @@
             color="lightenGray"
             dark
         >
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
-            <v-list-item style="justify-content: center">Jeson Button</v-list-item>
+            <v-list-item 
+                style="justify-content: center"
+                v-for="(grid, index) in qualifying.QualifyingResults"
+                :key="index"
+            >
+                {{grid.position}} - {{grid.Driver.givenName}} {{grid.Driver.familyName}} - {{grid.Constructor.name}}
+            </v-list-item>
+            
         </v-card>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Qualifying"
+    name: "Qualifying",
+    props: ['qualifying']
 }
 </script>

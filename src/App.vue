@@ -23,16 +23,16 @@
 
         <v-row justify="center">
           <v-col>
-            <RoundsOfTheSeason />
+            <RoundsOfTheSeason :races="races" @raceSelected="getRaceSelected"/>
           </v-col>
         </v-row>
 
         <v-row justify="space-between">
           <v-col xl="4" lg="4" md="4" sm="12" cols="12">
-            <QualifyingResult />
+            <QualifyingResult :qualifying="qualifying" />
           </v-col>
           <v-col xl="4" lg="4" md="4" sm="12" cols="12">
-            <RaceResult />
+            <RaceResult :raceResult="raceResult" />
           </v-col>
           <v-col xl="4" lg="4" md="4" sm="12" cols="12">
             <ChampionshipAfterRace />
@@ -63,10 +63,16 @@ export default {
 
   data: () => ({
     seasons: [],
-
     years: [],
 
-    selectedYear: ""
+    selectedYear: "",
+    drivers: [],
+    races: [],
+
+    raceSelected: [],
+    qualifying: [],
+    raceResult: [],
+    round: []
   }),
   methods: {
      allSeasons() {
@@ -81,12 +87,51 @@ export default {
               }
           })
     },
-    racesAndDriversOfTheSeason() {
-      console.log("Chamando função")
+    async racesAndDriversOfTheSeason(year) {
+      this.selectedYear = year;
+
+      this.drivers = []
+      this.races = []
+
+      this.raceSelected = []
+      this.qualifying = []
+      this.raceResult = []
+      this.round = []
+      
+       await fetch("https://ergast.com/api/f1/" + year + "/drivers.json")
+          .then(response => response.json())
+          .then(json => {
+              this.drivers = json.MRData.DriverTable.Drivers
+
+              for(let driver of this.drivers) {
+                  driver.points = parseInt(0)
+              }
+          })
+
+        await fetch("https://ergast.com/api/f1/" + year + ".json")
+          .then(response => response.json())
+          .then(json => {
+              this.races = json.MRData.RaceTable.Races
+          })
+    },
+    async getRaceSelected(round) {
+      this.raceSelected = this.races[round - 1]
+
+      await fetch("https://ergast.com/api/f1/"+ this.selectedYear + "/" + round + "/qualifying.json")
+        .then(response => response.json())
+        .then(json => {
+            this.qualifying = json.MRData.RaceTable.Races[0]
+        })
+
+      await fetch("https://ergast.com/api/f1/" + this.selectedYear + "/" + round + "/results.json")
+        .then(response => response.json())
+        .then(json => {
+            this.raceResult = json.MRData.RaceTable.Races[0]
+        })
     }
   },
   created() {
     this.allSeasons()
-  }
+  },
 };
 </script>
