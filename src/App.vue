@@ -27,7 +27,7 @@
       <v-container>
         <v-row justify="center">
            <v-col style="max-width: 200px">
-            <AllSeasons :years="years" @year-selected="racesAndDriversOfTheSeason"/>
+            <AllSeasons @year-selected="racesAndDriversOfTheSeason"/>
           </v-col>
         </v-row>
       </v-container>
@@ -62,6 +62,12 @@
             <ChampionshipAfterRace :drivers="drivers" />
           </v-col>
         </v-row>
+
+        <v-row v-else>
+          <v-col cols="12">
+            <p class="title">Selecione uma rodada para ver os resultados.</p>
+          </v-col>
+        </v-row>
       </v-container>
 
       <v-divider class="my-5"></v-divider>
@@ -90,8 +96,6 @@ export default {
   },
 
   data: () => ({
-    seasons: [],
-    years: [],
 
     selectedYear: "",
     drivers: [],
@@ -105,19 +109,8 @@ export default {
     round: []
   }),
   methods: {
-     allSeasons() {
-      fetch("https://ergast.com/api/f1/seasons.json?limit=200")
-          .then(response => response.json())
-          .then(json => {
-              let array = json.MRData.SeasonTable.Seasons
-              this.seasons = array.reverse()
-
-              for(let season of this.seasons) {
-                this.years.push(season.season)
-              }
-          })
-    },
     reset() {
+      // Procurar por meio de recarregar a página
       this.selectedYear = ""
 
       this.drivers = [],
@@ -214,9 +207,6 @@ export default {
 
     return 0
   },
-  },
-  created() {
-    this.allSeasons()
   },
 };
 </script>
