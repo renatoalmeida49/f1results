@@ -1,7 +1,8 @@
 <template>
     <div>
-        <h2 style="color: white">Race Result</h2>
+        <h2 style="color: white">Resultado da corrida</h2>
         <v-card
+            elevation="10"
             color="lightenGray"
             dark
         >

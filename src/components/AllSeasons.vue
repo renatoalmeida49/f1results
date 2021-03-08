@@ -2,8 +2,9 @@
     <div>
         <v-select
             :items="years"
-            label="Select a season"
+            label="Escolha um ano"
             color="blue"
+            elevation="10"
             v-model="selected"
         >
         </v-select>

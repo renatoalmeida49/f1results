@@ -1,9 +1,11 @@
 <template>
     <v-card>
         <v-tabs
-        background-color="lightenGray"
-        center-active
-        dark
+            justify="center"
+            background-color="lightenGray"
+            elevation="24"
+            center-active
+            dark
         >
             <v-tab
                 v-for="n in races.length"

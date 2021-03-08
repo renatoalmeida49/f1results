@@ -1,7 +1,8 @@
 <template>
     <div>
-        <h2 style="color: white">Championship After Race</h2>
+        <h2 style="color: white">Situação do campeonato</h2>
         <v-card
+            elevation="10"
             color="lightenGray"
             dark
         >

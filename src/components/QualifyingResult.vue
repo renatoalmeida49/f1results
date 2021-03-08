@@ -1,7 +1,8 @@
 <template>
     <div>
-        <h2 style="color: white">Qualifying</h2>
+        <h2 style="color: white">Qualificação</h2>
         <v-card
+            elevation="10"
             color="lightenGray"
             dark
         >
