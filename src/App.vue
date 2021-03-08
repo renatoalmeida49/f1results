@@ -71,6 +71,8 @@
       </v-container>
 
       <v-divider class="my-5"></v-divider>
+
+      <TheFooter />
     </v-main>
   </v-app>
 </template>
@@ -82,6 +84,7 @@ import QualifyingResult from './components/QualifyingResult'
 import RaceResult from './components/RaceResult'
 import RoundsOfTheSeason from './components/RoundsOfTheSeason'
 import HowToUse from './components/HowToUse'
+import TheFooter from './components/TheFooter'
 
 export default {
   name: 'App',
@@ -92,7 +95,8 @@ export default {
     QualifyingResult,
     RaceResult,
     RoundsOfTheSeason,
-    HowToUse
+    HowToUse,
+    TheFooter
   },
 
   data: () => ({
