@@ -3,10 +3,20 @@
     <v-app-bar
       app
       color="red"
-      class="d-flex justify-center"
     >
-      <v-btn>
-        F1
+      
+      <v-img
+        src="@/assets/f1logo.png"
+        max-width="70"
+      >
+      </v-img>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon @click="reset">
+        <v-icon>
+          mdi-help-box
+        </v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -20,7 +30,15 @@
             <AllSeasons :years="years" @year-selected="racesAndDriversOfTheSeason"/>
           </v-col>
         </v-row>
+      </v-container>
 
+      <v-divider class="my-5"></v-divider>
+
+      <v-container v-if="selectedYear == ''">
+        <HowToUse />
+      </v-container>
+
+      <v-container v-else>
         <v-row justify="center">
           <v-col>
             <RoundsOfTheSeason :races="races" @raceSelected="getRaceSelected"/>
@@ -33,7 +51,7 @@
           </v-col>
         </v-row>
 
-        <v-row justify="space-between">
+        <v-row justify="space-between" v-if="ready">
           <v-col xl="4" lg="4" md="4" sm="12" cols="12">
             <QualifyingResult :qualifying="qualifying" />
           </v-col>
@@ -45,6 +63,8 @@
           </v-col>
         </v-row>
       </v-container>
+
+      <v-divider class="my-5"></v-divider>
     </v-main>
   </v-app>
 </template>
@@ -55,6 +75,7 @@ import ChampionshipAfterRace from './components/ChampionshipAfterRace'
 import QualifyingResult from './components/QualifyingResult'
 import RaceResult from './components/RaceResult'
 import RoundsOfTheSeason from './components/RoundsOfTheSeason'
+import HowToUse from './components/HowToUse'
 
 export default {
   name: 'App',
@@ -64,7 +85,8 @@ export default {
     ChampionshipAfterRace,
     QualifyingResult,
     RaceResult,
-    RoundsOfTheSeason
+    RoundsOfTheSeason,
+    HowToUse
   },
 
   data: () => ({
@@ -95,8 +117,8 @@ export default {
               }
           })
     },
-    async racesAndDriversOfTheSeason(year) {
-      this.selectedYear = year;
+    reset() {
+      this.selectedYear = ""
 
       this.drivers = [],
       this.ready = false
@@ -106,6 +128,11 @@ export default {
       this.qualifying = []
       this.raceResult = []
       this.round = []
+    },
+    async racesAndDriversOfTheSeason(year) {
+      this.reset()
+
+      this.selectedYear = year;
       
        await fetch("https://ergast.com/api/f1/" + year + "/drivers.json")
           .then(response => response.json())
