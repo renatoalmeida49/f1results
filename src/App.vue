@@ -3,6 +3,7 @@
     <v-app-bar
       app
       color="red"
+      class="justify-center"
     >
       
       <v-img
@@ -193,11 +194,11 @@ export default {
                 }
                   
               }
+
+              this.ready = true
+              this.drivers.sort(this.order)
             }
           })
-        
-        this.drivers.sort(this.order)
-        this.ready = true
       }
     },
     order(a, b) {
@@ -214,3 +215,14 @@ export default {
   },
 };
 </script>
+
+<style>
+@font-face {
+  font-family: "Formula1";
+  src: local("Formula1"),
+    url('./fonts/Formula1/Formula1-Regular_web_0.ttf') format("truetype");
+  /* 1. node_modules/vuetify/src/styles/settings/_variables.scss 
+     2. change '$body-font-family: 'Formula1', sans-serif !default;' to apply */
+}
+
+</style>
