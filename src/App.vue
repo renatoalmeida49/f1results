@@ -53,13 +53,13 @@
         </v-row>
 
         <v-row justify="space-between" v-if="qualifying.length != 0 && raceResult.length != 0">
-          <v-col xl="4" lg="4" md="4" sm="12" cols="12">
+          <v-col xl="4" lg="4" md="6" sm="12" cols="12">
             <QualifyingResult :qualifying="qualifying" />
           </v-col>
-          <v-col xl="4" lg="4" md="4" sm="12" cols="12">
+          <v-col xl="4" lg="4" md="6" sm="12" cols="12">
             <RaceResult :raceResult="raceResult" />
           </v-col>
-          <v-col xl="4" lg="4" md="4" sm="12" cols="12">
+          <v-col xl="4" lg="4" md="12" sm="12" cols="12">
             <ChampionshipAfterRace :drivers="drivers" />
           </v-col>
         </v-row>
@@ -156,7 +156,7 @@ export default {
     },
     async getRaceSelected(round) {
       this.loading = true
-      
+
       this.raceSelected = this.races[round - 1]
 
       await fetch("https://ergast.com/api/f1/"+ this.selectedYear + "/" + round + "/qualifying.json")
@@ -174,7 +174,6 @@ export default {
       this.getChampionshipAfterRace(round)
     },
     async getChampionshipAfterRace(round) {
-      console.log(this.ready)
       // Situação do campeonato após a corrida: 
       for(let driver of this.drivers) {
         driver.points = parseFloat(0)
