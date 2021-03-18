@@ -29,22 +29,44 @@
 <script>
 export default {
     name: "RoundsOfTheSeason",
-    props: ['races'],
+    props: ['year'],
+    data() {
+        return {
+            races: []
+        }
+    },
     methods: {
         raceSelected(keynumber) {
-            this.$emit('raceSelected', keynumber)
+            let array = {
+                "key" : keynumber,
+                "year": this.races[keynumber - 1].season,
+                "round": this.races[keynumber - 1].raceName
+            }
+
+            this.$emit('raceSelected', array)
         },
         getFlag(n) {
             n--
-
             let country = this.races[n].Circuit.Location.country
-
             let images = require.context('../assets/flags/', false, /\.png$/)
-
-            //let path = `../assets/flags/${country.toLowerCase()}.png`
-            
             return images('./' + country.toLowerCase() + ".png")
+        },
+        async racesOfSeason() {
+            await fetch("https://ergast.com/api/f1/" + this.year + ".json")
+                .then(response => response.json())
+                .then(json => {
+                    this.races = json.MRData.RaceTable.Races
+                })
+        },
+    },
+    watch: {
+        year() {
+            this.racesOfSeason()
+            this.raceSelected(1)
         }
     },
+    created() {
+        this.racesOfSeason()
+    }
 }
 </script>

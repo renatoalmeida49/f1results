@@ -21,6 +21,31 @@
 <script>
 export default {
     name: "Qualifying",
-    props: ['qualifying']
+    data() {
+        return {
+            qualifying: []
+        }
+    },
+    props: ['year', 'round'],
+    methods: {
+        async getQualifying() {
+            await fetch("https://ergast.com/api/f1/"+ this.year + "/" + this.round + "/qualifying.json")
+                .then(response => response.json())
+                .then(json => {
+                    this.qualifying = json.MRData.RaceTable.Races[0]
+                })
+        }
+    },
+    watch: {
+        year() {
+            this.getQualifying()
+        },
+        round() {
+            this.getQualifying()
+        }
+    },
+    created() {
+        this.getQualifying()
+    }
 }
 </script>

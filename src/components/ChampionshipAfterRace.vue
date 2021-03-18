@@ -8,10 +8,10 @@
         >
             <v-list-item
                 style="justify-content: center"
-                v-for="(driver, index) in drivers"
+                v-for="(driver, index) in driverStandings.DriverStandings"
                 :key="index"
             >
-                {{index + 1}} - {{driver.givenName}} {{driver.familyName}} - {{driver.points}}
+                {{index + 1}} - {{driver.Driver.givenName}} {{driver.Driver.familyName}} - {{driver.points}}
             </v-list-item>
         </v-card>
     </div>
@@ -20,6 +20,31 @@
 <script>
 export default {
     name: "ChampionshipAfterRace",
-    props: ['drivers']
+    props: ['year', 'round'],
+    data() {
+        return {
+            driverStandings: []
+        }
+    },
+    methods: {
+        async getDriverStandings() {
+            await fetch("https://ergast.com/api/f1/" + this.year + "/" + this.round  + "/driverstandings.json")
+                .then(response => response.json())
+                .then(json => {
+                    this.driverStandings = json.MRData.StandingsTable.StandingsLists[0]
+                    })
+        }
+    },
+    watch: {
+        year() {
+            this.getDriverStandings()
+        },
+        round() {
+            this.getDriverStandings()
+        }
+    },
+    created() {
+        this.getDriverStandings()
+    }
 }
 </script>
