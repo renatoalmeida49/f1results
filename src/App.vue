@@ -52,14 +52,14 @@
           </v-col>
         </v-row>
 
-        <v-row justify="space-between" v-if="ready">
+        <v-row justify="space-between" v-if="qualifying.length != 0 && raceResult.length != 0">
           <v-col xl="4" lg="4" md="4" sm="12" cols="12">
             <QualifyingResult :qualifying="qualifying" />
           </v-col>
           <v-col xl="4" lg="4" md="4" sm="12" cols="12">
             <RaceResult :raceResult="raceResult" />
           </v-col>
-          <v-col xl="4" lg="4" md="4" sm="12" cols="12" v-if="ready">
+          <v-col xl="4" lg="4" md="4" sm="12" cols="12">
             <ChampionshipAfterRace :drivers="drivers" />
           </v-col>
         </v-row>
@@ -72,6 +72,13 @@
       </v-container>
 
       <v-divider class="my-5"></v-divider>
+
+      <v-overlay :value="loading">
+        <v-progress-circular
+          indeterminate
+          size="64"
+        ></v-progress-circular>
+      </v-overlay>
 
       <TheFooter />
     </v-main>
@@ -104,7 +111,7 @@ export default {
 
     selectedYear: "",
     drivers: [],
-    ready: false,
+    loading: false,
     componentKey: 0,
     races: [],
 
@@ -119,7 +126,6 @@ export default {
       this.selectedYear = ""
 
       this.drivers = [],
-      this.ready = false
       this.races = []
 
       this.raceSelected = []
@@ -149,6 +155,8 @@ export default {
           })
     },
     async getRaceSelected(round) {
+      this.loading = true
+      
       this.raceSelected = this.races[round - 1]
 
       await fetch("https://ergast.com/api/f1/"+ this.selectedYear + "/" + round + "/qualifying.json")
@@ -166,6 +174,7 @@ export default {
       this.getChampionshipAfterRace(round)
     },
     async getChampionshipAfterRace(round) {
+      console.log(this.ready)
       // Situação do campeonato após a corrida: 
       for(let driver of this.drivers) {
         driver.points = parseFloat(0)
@@ -190,16 +199,17 @@ export default {
                 // A cada interação verifica
                 if(this.drivers[y].driverId == roundResults.Results[z].Driver.driverId) {
                   this.drivers[y].points += parseFloat(roundResults.Results[z].points)
-                  console.log(this.drivers[y].driverId + " agora tem " + this.drivers[y].points)
                 }
                   
               }
-
-              this.ready = true
-              this.drivers.sort(this.order)
             }
           })
       }
+
+      this.loading = false
+      console.log(this.ready)
+      this.drivers.sort(this.order)
+
     },
     order(a, b) {
     if(a.points < b.points) {
