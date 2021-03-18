@@ -14,7 +14,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon @click="reset">
+      <v-btn icon @click="forceRender">
         <v-icon>
           mdi-help-box
         </v-icon>
@@ -24,6 +24,7 @@
     <v-main
         style="background-color: #242433"
         class="mt-4"
+        :key="componentKey"
     >
       <v-container>
         <v-row justify="center">
@@ -52,8 +53,8 @@
           </v-col>
         </v-row>
 
-        <v-row justify="space-between" v-if="qualifying.length != 0 && raceResult.length != 0">
-          <v-col xl="4" lg="4" md="6" sm="12" cols="12">
+        <v-row justify="space-between" v-if="raceResult.length != 0">
+          <v-col v-if="qualifying != null" xl="4" lg="4" md="6" sm="12" cols="12">
             <QualifyingResult :qualifying="qualifying" />
           </v-col>
           <v-col xl="4" lg="4" md="6" sm="12" cols="12">
@@ -112,13 +113,13 @@ export default {
     selectedYear: "",
     drivers: [],
     loading: false,
-    componentKey: 0,
     races: [],
 
     raceSelected: [],
     qualifying: [],
     raceResult: [],
-    round: []
+    round: [],
+    componentKey: 0,
   }),
   methods: {
     reset() {
@@ -155,7 +156,7 @@ export default {
           })
     },
     async getRaceSelected(round) {
-      this.loading = true
+      this.loading = true // Tela de carregamento é acionada
 
       this.raceSelected = this.races[round - 1]
 
@@ -174,16 +175,13 @@ export default {
       this.getChampionshipAfterRace(round)
     },
     async getChampionshipAfterRace(round) {
-      // Situação do campeonato após a corrida: 
+      // Necessário zerar toda a pontuação dos pilotos
       for(let driver of this.drivers) {
         driver.points = parseFloat(0)
       }
-      // LOOP para passar por todas as rodadas da temporada, desde a primeira até a solicitada
+      // ForLoop para passar por todas as rodadas da temporada, desde a primeira até a solicitada
       for(let i = 1; i <= round; i++) {
-          
-        console.log("Resultados da rodada " + i + "------------------") 
-
-        // Faz a requisição do resultado da primeira corrida em diante
+        // Faz a requisição do resultado da rodada
         await fetch("https://ergast.com/api/f1/" + this.selectedYear + "/" + i + "/results.json")
           .then(response => response.json())
           .then(json => {
@@ -192,12 +190,12 @@ export default {
             // Pega o resultado da rodada e passa de piloto em piloto para ver sua pontuação
             for(let z = 0; z < roundResults.Results.length; z++) {
 
-              // Agora passa de piloto em piloto no array de pilotos da temporada para poder entregar os pontos
+              // Procira o piloto no array de pilotos da temporada para poder entregar os pontos
               for(let y = 0; y < this.drivers.length; y++) {
-
                 // A cada interação verifica
                 if(this.drivers[y].driverId == roundResults.Results[z].Driver.driverId) {
                   this.drivers[y].points += parseFloat(roundResults.Results[z].points)
+                  break;
                 }
                   
               }
@@ -205,22 +203,24 @@ export default {
           })
       }
 
-      this.loading = false
-      console.log(this.ready)
       this.drivers.sort(this.order)
-
+      this.loading = false // Tela de carregamento removida
     },
     order(a, b) {
-    if(a.points < b.points) {
-        return 1
-    }
+      if(a.points < b.points) {
+          return 1
+      }
 
-    if(a.points > b.points) {
-        return -1
-    }
+      if(a.points > b.points) {
+          return -1
+      }
 
-    return 0
-  },
+      return 0
+    },
+    forceRender() {
+      this.componentKey += 1
+      this.reset()
+    }
   },
 };
 </script>
