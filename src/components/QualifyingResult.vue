@@ -8,7 +8,16 @@
             :items-per-page="30"
             class="elevation-10"
             sort-by="#"
-        ></v-data-table>
+            :loading="loading"
+        >
+            <template v-slot:[`item.posicao`]="{ item }">
+                <v-chip
+                    :color="getColor(item.posicao)"
+                >
+                    {{ item.posicao }}
+                </v-chip>
+            </template>
+        </v-data-table>
 
         <v-card
             v-else
@@ -33,27 +42,36 @@ export default {
                 {text: 'Constutor', value: 'construtor'},
                 // LAP TIME: {text: 'Pontuação', value: 'pontuacao'}
             ],
-            drivers: []
+            drivers: [],
+            loading: true
         }
     },
     props: ['year', 'round'],
     methods: {
         async getQualifying() {
+            this.loading = true
+
             this.drivers = []
-            
+
             await fetch("https://ergast.com/api/f1/"+ this.year + "/" + this.round + "/qualifying.json")
                 .then(response => response.json())
                 .then(json => {
                     this.qualifying = json.MRData.RaceTable.Races[0]
                 })
 
-            for(let driver of this.qualifying.QualifyingResults) {
-                this.drivers.push({
-                    posicao: driver.position,
-                    nome: `${driver.Driver.givenName} ${driver.Driver.familyName}`,
-                    construtor: driver.Constructor.name
-                })
-            }
+            if(this.qualifying != null)
+                for(let driver of this.qualifying.QualifyingResults) {
+                    this.drivers.push({
+                        posicao: driver.position,
+                        nome: `${driver.Driver.givenName} ${driver.Driver.familyName}`,
+                        construtor: driver.Constructor.name
+                    })
+                }
+            
+            this.loading = false
+        },
+        getColor(position) {
+            if(position) return 'black'
         }
     },
     watch: {

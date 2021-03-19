@@ -7,7 +7,16 @@
             :items-per-page="30"
             class="elevation-10"
             sort-by="#"
-        ></v-data-table>
+            :loading="loading"
+        >
+            <template v-slot:[`item.posicao`]="{ item }">
+                <v-chip
+                    :color="getColor(item.posicao)"
+                >
+                    {{ item.posicao }}
+                </v-chip>
+            </template>
+        </v-data-table>
     </div>
 </template>
 
@@ -24,11 +33,14 @@ export default {
                 {text: 'Constutor', value: 'construtor'},
                 {text: 'Pontuação', value: 'pontuacao'}
             ],
-            drivers: []
+            drivers: [],
+            loading: true
         }
     },
     methods: {
         async getDriverStandings() {
+            this.loading = true
+
             this.drivers = []
             
             await fetch("https://ergast.com/api/f1/" + this.year + "/" + this.round  + "/driverstandings.json")
@@ -45,6 +57,11 @@ export default {
                     pontuacao: driver.points
                 })
             }
+
+            this.loading = false
+        },
+        getColor(position) {
+            if(position) return 'black'
         }
     },
     watch: {

@@ -7,7 +7,24 @@
             :items-per-page="30"
             class="elevation-10"
             sort-by="#"
-        ></v-data-table>
+            :loading="loading"
+        >
+            <template v-slot:[`item.posicao`]="{ item }">
+                <v-chip
+                    :color="getColor(item.posicao)"
+                >
+                    {{ item.posicao }}
+                </v-chip>
+            </template>
+
+            <template v-slot:[`item.pontuacao`]="{ item }">
+                <v-chip
+                    :color="getPontuacaoColor(item.pontuacao)"
+                >
+                    {{ item.pontuacao }}
+                </v-chip>
+            </template>
+        </v-data-table>
     </div>
 </template>
 
@@ -24,11 +41,14 @@ export default {
                 {text: 'Construtor', value: 'construtor'},
                 {text: 'Pontuação', value: 'pontuacao'}
             ],
-            drivers: []
+            drivers: [],
+            loading: true
         }
     },
     methods: {
         async getRaceResult() {
+            this.loading = true
+
             this.drivers = []
 
             await fetch("https://ergast.com/api/f1/" + this.year + "/" + this.round + "/results.json")
@@ -45,6 +65,18 @@ export default {
                     pontuacao: driver.points
                 })
             }
+            
+            this.loading = false
+        },
+        getColor(position) {
+            if(position == 1) return '#F9A825'
+            else if(position == 2) return '#455A64'
+            else if(position == 3) return '#8D6E63'
+            else return 'black'
+        },
+        getPontuacaoColor(pontuacao) {
+            if(pontuacao > 0) return '#546E7A'
+            else return null
         }
     },
     watch:{
