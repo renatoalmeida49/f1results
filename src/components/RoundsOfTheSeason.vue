@@ -46,8 +46,7 @@ export default {
             this.$emit('raceSelected', array)
         },
         getFlag(n) {
-            n--
-            let country = this.races[n].Circuit.Location.country
+            let country = this.races[n - 1].Circuit.Location.country
             let images = require.context('../assets/flags/', false, /\.png$/)
             return images('./' + country.toLowerCase() + ".png")
         },
@@ -56,6 +55,7 @@ export default {
                 .then(response => response.json())
                 .then(json => {
                     this.races = json.MRData.RaceTable.Races
+                    this.raceSelected(1)
                 })
         },
     },

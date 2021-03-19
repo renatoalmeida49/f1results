@@ -109,7 +109,6 @@ export default {
   },
 
   data: () => ({
-
     selectedYear: "",
     selectedRound: 1,
     loading: false,
@@ -118,12 +117,12 @@ export default {
     componentKey: 0,
   }),
   methods: {
-    async yearSelected(year) {
+    yearSelected(year) {
       this.reset()
       this.selectedYear = year
       this.selectedRound = 1
     },
-    async getRaceSelected(data) {
+    getRaceSelected(data) {
       this.loading = true // Tela de carregamento é acionada
       
       this.raceName = data.round
@@ -136,13 +135,11 @@ export default {
       this.selectedRound = 1
       this.loading = false
       this.raceName = ""
-
-      this.componentKey = 0
     },
     forceRender() {
-      this.componentKey += 1
       this.reset()
-    }
+      this.componentKey += 1
+    },
   }
 };
 </script>

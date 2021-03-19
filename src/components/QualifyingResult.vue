@@ -2,6 +2,7 @@
     <div>
         <h2 style="color: white">Qualificação</h2>
         <v-card
+            v-if="qualifying != null"
             elevation="10"
             color="lightenGray"
             dark
@@ -14,6 +15,15 @@
                 {{grid.position}} - {{grid.Driver.givenName}} {{grid.Driver.familyName}} - {{grid.Constructor.name}}
             </v-list-item>
             
+        </v-card>
+
+        <v-card
+            v-else
+            elevation="10"
+            color="lightenGray"
+            dark
+        >
+            <v-list-item style="justify-content: center">Desculpe, não temos esses dados.</v-list-item>
         </v-card>
     </div>
 </template>
