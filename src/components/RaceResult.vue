@@ -1,20 +1,13 @@
 <template>
     <div>
         <h2 style="color: white">Resultado da corrida</h2>
-        <v-card
-            elevation="10"
-            color="lightenGray"
-            dark
-        >
-            <v-list-item
-                style="justify-content: center"
-                v-for="(result, index) in raceResult.Results"
-                :key="index"
-                :class="{gold: index == 0, silver: index == 1, bronze: index == 2, pointFinisher: result.points != 0}"
-            >
-                {{result.position}} - {{result.Driver.givenName}} {{result.Driver.familyName}} - {{result.Constructor.name}} <span v-show="result.points != 0" class="ml-1"> - {{result.points}}</span>
-            </v-list-item>
-        </v-card>
+        <v-data-table
+            :headers="headers"
+            :items="drivers"
+            :items-per-page="30"
+            class="elevation-10"
+            sort-by="#"
+        ></v-data-table>
     </div>
 </template>
 
@@ -24,16 +17,34 @@ export default {
     props: ['year', 'round'],
     data() {
         return {
-            raceResult: []
+            raceResult: [],
+            headers: [
+                {text: '#', value: 'posicao'},
+                {text: 'Nome', value: 'nome'},
+                {text: 'Construtor', value: 'construtor'},
+                {text: 'Pontuação', value: 'pontuacao'}
+            ],
+            drivers: []
         }
     },
     methods: {
         async getRaceResult() {
+            this.drivers = []
+
             await fetch("https://ergast.com/api/f1/" + this.year + "/" + this.round + "/results.json")
                 .then(response => response.json())
                 .then(json => {
                     this.raceResult = json.MRData.RaceTable.Races[0]
                 })
+
+            for(let driver of this.raceResult.Results) {
+                this.drivers.push({
+                    posicao: driver.position,
+                    nome: `${driver.Driver.givenName} ${driver.Driver.familyName}`,
+                    construtor: driver.Constructor.name,
+                    pontuacao: driver.points
+                })
+            }
         }
     },
     watch:{

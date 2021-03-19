@@ -54,13 +54,13 @@
         </v-row>
 
         <v-row justify="space-between">
-          <v-col xl="4" lg="4" md="6" sm="12" cols="12">
+          <v-col xl="4" lg="6" md="6" sm="12" cols="12">
             <QualifyingResult :year="selectedYear" :round="selectedRound" />
           </v-col>
-          <v-col xl="4" lg="4" md="6" sm="12" cols="12">
+          <v-col xl="4" lg="6" md="6" sm="12" cols="12">
             <RaceResult :year="selectedYear" :round="selectedRound" />
           </v-col>
-          <v-col xl="4" lg="4" md="12" sm="12" cols="12">
+          <v-col xl="4" lg="12" md="12" sm="12" cols="12">
             <ChampionshipAfterRace :year="selectedYear" :round="selectedRound" />
           </v-col>
         </v-row>
