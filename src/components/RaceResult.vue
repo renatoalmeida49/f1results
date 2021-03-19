@@ -10,8 +10,9 @@
                 style="justify-content: center"
                 v-for="(result, index) in raceResult.Results"
                 :key="index"
+                :class="{gold: index == 0, silver: index == 1, bronze: index == 2, pointFinisher: result.points != 0}"
             >
-                {{result.position}} - {{result.Driver.givenName}} {{result.Driver.familyName}} - {{result.Constructor.name}} - {{result.points}}
+                {{result.position}} - {{result.Driver.givenName}} {{result.Driver.familyName}} - {{result.Constructor.name}} <span v-show="result.points != 0" class="ml-1"> - {{result.points}}</span>
             </v-list-item>
         </v-card>
     </div>
@@ -48,3 +49,25 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.gold {
+    background: #F9A825 !important;
+    border-radius: 6px;
+}
+
+.silver {
+    background: silver !important;
+    border-radius: 6px;
+}
+
+.bronze {
+    background: #8D6E63 !important;
+    border-radius: 6px;
+}
+
+.pointFinisher {
+    background: #546E7A;
+    border-radius: 6px;
+}
+</style>

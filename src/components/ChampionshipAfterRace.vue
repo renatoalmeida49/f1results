@@ -11,7 +11,7 @@
                 v-for="(driver, index) in driverStandings.DriverStandings"
                 :key="index"
             >
-                {{index + 1}} - {{driver.Driver.givenName}} {{driver.Driver.familyName}} - {{driver.points}}
+                {{index + 1}} - {{driver.Driver.givenName}} {{driver.Driver.familyName}} - {{driver.Constructors[0].name}} <span v-show="driver.points != 0" class="ml-1"> - {{driver.points}}</span>
             </v-list-item>
         </v-card>
     </div>
@@ -32,7 +32,7 @@ export default {
                 .then(response => response.json())
                 .then(json => {
                     this.driverStandings = json.MRData.StandingsTable.StandingsLists[0]
-                    })
+                })
         }
     },
     watch: {

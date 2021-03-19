@@ -65,11 +65,6 @@
           </v-col>
         </v-row>
 
-        <v-row>
-          <v-col cols="12">
-            <p class="title">Selecione uma rodada para ver os resultados.</p>
-          </v-col>
-        </v-row>
       </v-container>
 
       <v-divider class="my-5"></v-divider>
