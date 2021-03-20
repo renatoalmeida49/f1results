@@ -79,7 +79,8 @@ export default {
             this.getQualifying()
         },
         round() {
-            this.getQualifying()
+            if(this.round != 1)
+                this.getQualifying()
         }
     },
     created() {

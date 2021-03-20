@@ -70,7 +70,7 @@ export default {
         },
         getColor(position) {
             if(position == 1) return '#F9A825'
-            else if(position == 2) return '#455A64'
+            else if(position == 2) return '#999999'
             else if(position == 3) return '#8D6E63'
             else return 'black'
         },
@@ -79,12 +79,13 @@ export default {
             else return null
         }
     },
-    watch:{
+    watch: {
         year() {
             this.getRaceResult()
         },
         round() {
-            this.getRaceResult()
+            if(this.round != 1)
+                this.getRaceResult()
         }
     },
     created() {
@@ -92,25 +93,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.gold {
-    background: #F9A825 !important;
-    border-radius: 6px;
-}
-
-.silver {
-    background: silver !important;
-    border-radius: 6px;
-}
-
-.bronze {
-    background: #8D6E63 !important;
-    border-radius: 6px;
-}
-
-.pointFinisher {
-    background: #546E7A;
-    border-radius: 6px;
-}
-</style>

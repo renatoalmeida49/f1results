@@ -43,13 +43,7 @@
       <v-container v-else>
         <v-row justify="center">
           <v-col>
-            <RoundsOfTheSeason :year="selectedYear" @raceSelected="getRaceSelected"/>
-          </v-col>
-        </v-row>
-
-        <v-row justify="center">
-          <v-col cols="auto">
-            <div class="d-flex display-1">{{selectedYear}} - {{raceName}}</div>
+            <RoundsOfTheSeason :year="selectedYear" @round-selected="roundSelected"/>
           </v-col>
         </v-row>
 
@@ -66,15 +60,6 @@
         </v-row>
 
       </v-container>
-
-      <v-divider class="my-5"></v-divider>
-
-      <v-overlay :value="loading">
-        <v-progress-circular
-          indeterminate
-          size="64"
-        ></v-progress-circular>
-      </v-overlay>
 
       <TheFooter />
     </v-main>
@@ -106,24 +91,16 @@ export default {
   data: () => ({
     selectedYear: "",
     selectedRound: 1,
-    loading: false,
-    raceName: "",
 
     componentKey: 0,
   }),
   methods: {
     yearSelected(year) {
-      this.reset()
       this.selectedYear = year
-      this.selectedRound = 1
+      this.roundSelected(1)
     },
-    getRaceSelected(data) {
-      this.loading = true // Tela de carregamento é acionada
-      
-      this.raceName = data.round
-      this.selectedRound = data.key
-
-      this.loading = false // Tela de carregamento removida
+    roundSelected(round) {
+      this.selectedRound = round
     },
     reset() {
       this.selectedYear = ""

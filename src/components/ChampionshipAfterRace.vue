@@ -66,10 +66,11 @@ export default {
     },
     watch: {
         year() {
-            this.getDriverStandings()
+           this.getDriverStandings()
         },
         round() {
-            this.getDriverStandings()
+            if(this.round != 1)
+                this.getDriverStandings()
         }
     },
     created() {
