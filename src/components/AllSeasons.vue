@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { bus } from '../main'
+
 export default {
     name: "AllSeasons",
     data() {
@@ -38,7 +40,7 @@ export default {
     },
     watch: {
         selected() {
-            this.$emit('year-selected', this.selected)
+            bus.$emit('year-selected', this.selected)
         }
     },
     created() {
