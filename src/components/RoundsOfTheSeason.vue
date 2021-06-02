@@ -58,7 +58,7 @@ export default {
             return images('./' + country.toLowerCase() + ".png")
         },
         async racesOfSeason() {
-            await fetch("https://ergast.com/api/f1/" + this.year + ".json")
+            await fetch(`https://ergast.com/api/f1/${this.year}.json`)
                 .then(response => response.json())
                 .then(json => {
                     this.races = json.MRData.RaceTable.Races

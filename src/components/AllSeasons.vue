@@ -19,8 +19,6 @@ export default {
     data() {
         return {
             selected: "",
-
-            seasons: [],
             years: []
         }
     },
@@ -29,12 +27,9 @@ export default {
             fetch("https://ergast.com/api/f1/seasons.json?limit=200")
                 .then(response => response.json())
                 .then(json => {
-                    let array = json.MRData.SeasonTable.Seasons
-                    this.seasons = array.reverse()
-
-                    for(let season of this.seasons) {
-                    this.years.push(season.season)
-                    }
+                    this.years = json.MRData.SeasonTable.Seasons.map((season) => {
+                        return season.season
+                    }).reverse()
                 })
         },
     },
