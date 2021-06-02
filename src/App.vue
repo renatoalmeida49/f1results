@@ -1,25 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="red"
-      class="justify-center"
-    >
-      
-      <v-img
-        src="@/assets/f1logo.png"
-        max-width="70"
-      >
-      </v-img>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>
-          mdi-help-box
-        </v-icon>
-      </v-btn>
-    </v-app-bar>
+    <TheHeader />
 
     <v-main
       style="background-color: #242433"
@@ -27,20 +8,19 @@
     >
       <v-container>
         <v-row justify="center">
-           <v-col style="max-width: 200px">
-            <AllSeasons />
-          </v-col>
+          <AllSeasons />
         </v-row>
       </v-container>
 
       <router-view></router-view>
-
-      <TheFooter />
+      
     </v-main>
+    <TheFooter />
   </v-app>
 </template>
 
 <script>
+import TheHeader from './components/TheHeader'
 import AllSeasons from './components/AllSeasons'
 import TheFooter from './components/TheFooter'
 
@@ -48,6 +28,7 @@ export default {
   name: 'App',
 
   components: {
+    TheHeader,
     AllSeasons,
     TheFooter
   },
@@ -63,4 +44,12 @@ export default {
      2. change '$body-font-family: 'Formula1', sans-serif !default;' to apply */
 }
 
+img,
+.v-image {
+  cursor: pointer;
+}
+
+.v-main {
+  min-height: calc(100vh - 64px - 68px - 108px);
+}
 </style>
