@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :key="componentKey">
         <v-card>
             <v-tabs
                 justify="center"
@@ -43,6 +43,7 @@ export default {
         return {
             races: [],
             roundSelected: "",
+            componentKey: 0
         }
     },
     methods: {
@@ -67,6 +68,9 @@ export default {
                     this.roundSelected = this.races[0].raceName
                 })
         },
+        forceRender() {
+            this.componentKey++
+        }
     },
     computed: {
         ...mapGetters(['year'])
@@ -74,6 +78,7 @@ export default {
     watch: {
         year() {
             this.racesOfSeason()
+            this.forceRender()
         }
     },
     created() {
