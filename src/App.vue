@@ -6,11 +6,9 @@
       style="background-color: #242433"
       class="mt-4"
     >
-      <v-container>
-        <v-row justify="center">
-          <AllSeasons />
-        </v-row>
-      </v-container>
+      <v-row justify="center">
+        <AllSeasons />
+      </v-row>
 
       <router-view></router-view>
       

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-container>
         <v-row>
             <v-col cols="12">
                 <p class="text-h3 text-lg-h1 text-md-h3">F1 Results</p>
@@ -59,7 +59,7 @@
                 <p class="text-justify text-body-1">Esses detalhes não são vistos quando você olha o resultado final de um campeonato. Mas são percebidos quando você olha cada corrida individualmente, quando você observa como o campeonato se desenhou.</p>
             </v-col>
         </v-row>
-    </div>
+    </v-container>
 </template>
 
 <script>

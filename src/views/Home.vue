@@ -1,15 +1,9 @@
 <template>
 <div>
-    <v-container v-if="year === ''">
-        <HowToUse />
-    </v-container>
+    <HowToUse v-if="year === ''" />
 
     <v-container v-else>
-        <v-row justify="center">
-            <v-col>
-                <RoundsOfTheSeason />
-            </v-col>
-        </v-row>
+        <RoundsOfTheSeason />
 
         <v-row justify="space-between">
             <v-col xl="4" lg="6" md="6" sm="12" cols="12">
@@ -27,13 +21,12 @@
 </template>
 
 <script>
-import ChampionshipAfterRace from '../components/ChampionshipAfterRace'
-import QualifyingResult from '../components/QualifyingResult'
-import RaceResult from '../components/RaceResult'
-import RoundsOfTheSeason from '../components/RoundsOfTheSeason'
-import HowToUse from '../components/HowToUse'
+import ChampionshipAfterRace from '../components/home/ChampionshipAfterRace'
+import QualifyingResult from '../components/home/QualifyingResult'
+import RaceResult from '../components/home/RaceResult'
+import RoundsOfTheSeason from '../components/home/RoundsOfTheSeason'
+import HowToUse from '../components/home/HowToUse'
 
-// import { bus } from '../main'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -45,22 +38,8 @@ export default {
         RaceResult,
         ChampionshipAfterRace
     },
-    methods: {
-        roundSelected(round) {
-            this.selectedRound = round
-        },
-    },
     computed: {
         ...mapGetters(['year'])
     },
-    created() {
-        // bus.$on('year-selected', (year) => {
-        //     this.selectedYear = year
-        // })
-    }
 }
 </script>
-
-<style>
-
-</style>

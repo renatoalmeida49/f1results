@@ -57,7 +57,7 @@ export default {
         },
         getFlag(n) {
             let country = this.races[n - 1].Circuit.Location.country
-            let images = require.context('../assets/flags/', false, /\.png$/)
+            let images = require.context('../../assets/flags/', false, /\.png$/)
             return images('./' + country.toLowerCase() + ".png")
         },
         async racesOfSeason() {
