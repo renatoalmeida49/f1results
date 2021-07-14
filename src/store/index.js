@@ -21,6 +21,7 @@ const store = new Vuex.Store({
     actions: {
         newYear(context, payload) {
             context.commit('newYear', payload)
+            context.commit('newRound', { round: 1 })
         },
         newRound(context, payload) {
             context.commit('newRound', payload)
