@@ -1,6 +1,6 @@
 <template>
 <div>
-    <v-container v-if="selectedYear == ''">
+    <v-container v-if="year === ''">
         <HowToUse />
     </v-container>
 
@@ -34,6 +34,7 @@ import RoundsOfTheSeason from '../components/RoundsOfTheSeason'
 import HowToUse from '../components/HowToUse'
 
 import { bus } from '../main'
+import { mapGetters } from 'vuex'
 
 export default {
     name: "Home",
@@ -55,6 +56,9 @@ export default {
         roundSelected(round) {
             this.selectedRound = round
         },
+    },
+    computed: {
+        ...mapGetters(['year'])
     },
     created() {
         bus.$on('year-selected', (year) => {

@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import { bus } from '../main'
+// import { bus } from '../main'
+import { mapActions } from 'vuex'
 
 export default {
     name: "AllSeasons",
@@ -23,6 +24,8 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['newYear']),
+
         allSeasons() {
             fetch("https://ergast.com/api/f1/seasons.json?limit=200")
                 .then(response => response.json())
@@ -35,7 +38,8 @@ export default {
     },
     watch: {
         selected() {
-            bus.$emit('year-selected', this.selected)
+            // bus.$emit('year-selected', this.selected)
+            this.newYear({year: this.selected})
         }
     },
     created() {

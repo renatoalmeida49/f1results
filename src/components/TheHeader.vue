@@ -23,13 +23,15 @@
 </template>
 
 <script>
-import { bus } from "../main"
+import { mapActions } from "vuex"
 
 export default {
     name: 'TheHeader',
     methods: {
+        ...mapActions(['newYear']),
+
         reset() {
-            bus.$emit('year-selected', '')
+            this.newYear({year: ''})
         }
     }
 }
