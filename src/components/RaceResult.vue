@@ -29,9 +29,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     name: "RaceResult",
-    props: ['year', 'round'],
     data() {
         return {
             raceResult: [],
@@ -78,6 +79,9 @@ export default {
             if(pontuacao > 0) return '#546E7A'
             else return null
         }
+    },
+    computed: {
+        ...mapGetters(['year', 'round'])
     },
     watch: {
         year() {

@@ -7,19 +7,19 @@
     <v-container v-else>
         <v-row justify="center">
             <v-col>
-                <RoundsOfTheSeason :year="selectedYear" @round-selected="roundSelected"/>
+                <RoundsOfTheSeason />
             </v-col>
         </v-row>
 
         <v-row justify="space-between">
             <v-col xl="4" lg="6" md="6" sm="12" cols="12">
-                <QualifyingResult :year="selectedYear" :round="selectedRound" />
+                <QualifyingResult />
             </v-col>
             <v-col xl="4" lg="6" md="6" sm="12" cols="12">
-                <RaceResult :year="selectedYear" :round="selectedRound" />
+                <RaceResult />
             </v-col>
             <v-col xl="4" lg="12" md="12" sm="12" cols="12">
-                <ChampionshipAfterRace :year="selectedYear" :round="selectedRound" />
+                <ChampionshipAfterRace />
             </v-col>
         </v-row>
     </v-container>
@@ -33,7 +33,7 @@ import RaceResult from '../components/RaceResult'
 import RoundsOfTheSeason from '../components/RoundsOfTheSeason'
 import HowToUse from '../components/HowToUse'
 
-import { bus } from '../main'
+// import { bus } from '../main'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -45,13 +45,6 @@ export default {
         RaceResult,
         ChampionshipAfterRace
     },
-    data() {
-        return {
-            selectedYear: '',
-
-            selectedRound: 1
-        }
-    },
     methods: {
         roundSelected(round) {
             this.selectedRound = round
@@ -61,9 +54,9 @@ export default {
         ...mapGetters(['year'])
     },
     created() {
-        bus.$on('year-selected', (year) => {
-            this.selectedYear = year
-        })
+        // bus.$on('year-selected', (year) => {
+        //     this.selectedYear = year
+        // })
     }
 }
 </script>

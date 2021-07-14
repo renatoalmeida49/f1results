@@ -21,9 +21,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     name: "ChampionshipAfterRace",
-    props: ['year', 'round'],
     data() {
         return {
             driverStandings: [],
@@ -63,6 +64,9 @@ export default {
         getColor(position) {
             if(position) return 'black'
         }
+    },
+    computed: {
+        ...mapGetters(['year', 'round'])
     },
     watch: {
         year() {

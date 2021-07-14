@@ -36,21 +36,26 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
     name: "RoundsOfTheSeason",
-    props: ['year'],
     data() {
         return {
+            year: '',
             races: [],
             roundSelected: "",
             componentKey: 0
         }
     },
     methods: {
+        ...mapActions(['newRound']),
+
         raceSelected(keynumber) {
             this.roundSelected = this.races[keynumber - 1].raceName
 
-            this.$emit('round-selected', keynumber)
+            // this.$emit('round-selected', keynumber)
+            this.newRound({round: keynumber})
         },
         getFlag(n) {
             let country = this.races[n - 1].Circuit.Location.country
@@ -77,6 +82,7 @@ export default {
     },
     created() {
         this.racesOfSeason()
+        this.year = this.$store.getters.year
     }
 }
 </script>

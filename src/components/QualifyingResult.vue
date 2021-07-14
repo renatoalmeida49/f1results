@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     name: "Qualifying",
     data() {
@@ -46,7 +48,6 @@ export default {
             loading: true
         }
     },
-    props: ['year', 'round'],
     methods: {
         async getQualifying() {
             this.loading = true
@@ -82,6 +83,9 @@ export default {
             if(this.round != 1)
                 this.getQualifying()
         }
+    },
+    computed: {
+        ...mapGetters(['year', 'round'])
     },
     created() {
         this.getQualifying()

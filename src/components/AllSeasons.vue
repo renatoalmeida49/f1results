@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// import { bus } from '../main'
 import { mapActions } from 'vuex'
 
 export default {
@@ -38,7 +37,6 @@ export default {
     },
     watch: {
         selected() {
-            // bus.$emit('year-selected', this.selected)
             this.newYear({year: this.selected})
         }
     },
