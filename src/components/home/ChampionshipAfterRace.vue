@@ -73,8 +73,7 @@ export default {
            this.getDriverStandings()
         },
         round() {
-            if(this.round != 1)
-                this.getDriverStandings()
+            this.getDriverStandings()
         }
     },
     created() {

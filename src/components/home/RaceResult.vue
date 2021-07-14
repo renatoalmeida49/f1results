@@ -88,8 +88,7 @@ export default {
             this.getRaceResult()
         },
         round() {
-            if(this.round != 1)
-                this.getRaceResult()
+            this.getRaceResult()
         }
     },
     created() {

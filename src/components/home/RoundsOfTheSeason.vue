@@ -52,7 +52,6 @@ export default {
         raceSelected(keynumber) {
             this.roundSelected = this.races[keynumber - 1].raceName
 
-            // this.$emit('round-selected', keynumber)
             this.newRound({round: keynumber})
         },
         getFlag(n) {

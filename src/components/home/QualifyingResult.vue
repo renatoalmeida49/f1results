@@ -80,8 +80,7 @@ export default {
             this.getQualifying()
         },
         round() {
-            if(this.round != 1)
-                this.getQualifying()
+            this.getQualifying()
         }
     },
     computed: {
