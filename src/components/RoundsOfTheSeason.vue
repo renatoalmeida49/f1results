@@ -6,7 +6,6 @@
                 background-color="lightenGray"
                 elevation="24"
                 center-active
-                :key="componentKey"
                 dark
             >
                 <v-tab
@@ -36,16 +35,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name: "RoundsOfTheSeason",
     data() {
         return {
-            year: '',
             races: [],
             roundSelected: "",
-            componentKey: 0
         }
     },
     methods: {
@@ -70,19 +67,17 @@ export default {
                     this.roundSelected = this.races[0].raceName
                 })
         },
-        forceRender() {
-            this.componentKey += 1
-        }
+    },
+    computed: {
+        ...mapGetters(['year'])
     },
     watch: {
         year() {
             this.racesOfSeason()
-            this.forceRender()
         }
     },
     created() {
         this.racesOfSeason()
-        this.year = this.$store.getters.year
     }
 }
 </script>
