@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import TheHeader from './components/TheHeader'
-import AllSeasons from './components/AllSeasons'
-import TheFooter from './components/TheFooter'
+import TheHeader from './components/layout/TheHeader'
+import AllSeasons from './components/layout/AllSeasons'
+import TheFooter from './components/layout/TheFooter'
 
 export default {
   name: 'App',
