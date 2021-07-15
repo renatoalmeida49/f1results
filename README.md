@@ -6,7 +6,7 @@ F1 Results permite a você acompanhar os resultados das corridas da temporada co
 * O resultado da qualificação e da corrida serão exibidos
 * A última tabela representa mostra a pontuação dos pilotos no campeonato após a corrida.
 
-## Sumário
+## :clipboard: Sumário
 
 - [Visão Geral](#visao-geral)
   - [O problema](#o-problema)
