@@ -90,9 +90,9 @@ Com as dependências instaladas execute o comando seguinte para executar o proje
 npm run serve
 ```
   
-## Autor  
+## :smile: Autor  
   
 - Renato Novaes
-- [Website](https://www.renatonovaes.dev)  
-- [Linkedin](https://www.linkedin.com/in/renatonovaes49)
-- [Instagram](https://www.instagram.com/novaes_r)
+  - [Website](https://www.renatonovaes.dev)  
+  - [Linkedin](https://www.linkedin.com/in/renatonovaes49)
+  - [Instagram](https://www.instagram.com/novaes_r)
