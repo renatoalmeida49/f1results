@@ -19,7 +19,7 @@ F1 Results permite a você acompanhar os resultados das corridas da temporada co
 - [Como executar o projeto](#como-executar-o-projeto)
 - [Autor](#autor)
 
-## Visão geral
+## :telescope: Visão geral
 
 ### O problema
 
@@ -63,14 +63,15 @@ Aprendi sobre o uso de eventos. Logo depois vi como essa abordagem deve ser evit
 Apesar se não usar outro método além do GET para consumir essa API, aprendi o que é uma API, como consumir uma corretamente atráves de seus métodos e payloads, e como esses conceitos são vitais para o desenvolvimentos de sistemas em nosos dias.  
   
 
-## Futuras implementações
+## :satellite: Futuras implementações
 
 :white_medium_square: Substituir o uso do `fetch` pela bibliota `axios`  
 :white_medium_square: Melhorar a tela inicial. Necessário deixar mais intuitiva e clara  
 :white_medium_square: Exibir mais estatísicas do pilotos e campeonato. Informações essas que podem ser extraídas da API  
 :white_medium_square: Melhores praticas para gerenciar as chamadas/endpoints da API  
-:white_medium_square: Utilização da biblioteca i18n para multiplas linguagens
-## Como executar o projeto
+:white_medium_square: Utilização da biblioteca i18n para multiplas linguagens  
+
+## :arrow_forward: Como executar o projeto
 
 Certifique-se de ter instalado o NodeJs em sua máquina. Você pode digitar no seu terminal o comando: 
 ```
