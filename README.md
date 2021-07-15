@@ -31,9 +31,9 @@ Na época a plataforma apenas abria um player de vídeo para exibir a corrida. E
   
 ### Prints  
   
-![](./assets/screenshots/desktop-home.png)  
-![](./assets/screenshots/desktop-result.png)  
-![](./assets/screenshots/mobile-home.png)  
+![](./src/assets/screenshots/desktop-home.png)  
+![](./src/assets/screenshots/desktop-result.png)  
+![](./src/assets/screenshots/mobile-home.png)  
     
 Não há print para um resultado mobile devido ao tamanho da imagem. Mas o projeto está responsivo e amigável para dispositivos móveis.
 ### Links
