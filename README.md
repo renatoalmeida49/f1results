@@ -11,7 +11,7 @@ F1 Results permite a você acompanhar os resultados das corridas da temporada co
 - [Visão Geral](#visao-geral)
   - [O problema](#o-problema)
   - [Prints](#prints)
-  - [Links](#link)
+  - [Links](#links)
 - [Meu processo](#meu-processo)
   - [Construção](#construcao)
   - [O que aprendi](#o-que-aprendi)
