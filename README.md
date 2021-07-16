@@ -40,7 +40,7 @@ Não há print para um resultado mobile devido ao tamanho da imagem. Mas o proje
  
 - Projeto online: [Netlify](https://infallible-thompson-af8456.netlify.app/)  
   
-## :pencil2: Meu processo  
+## :pencil2: Meu processo 
   
 ### Construção  
   
