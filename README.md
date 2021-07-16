@@ -70,7 +70,7 @@ Apesar se não usar outro método além do GET para consumir essa API, aprendi o
 :white_medium_square: Exibir mais estatísicas do pilotos e campeonato. Informações essas que podem ser extraídas da API  
 :white_medium_square: Melhores praticas para gerenciar as chamadas/endpoints da API  
 :white_medium_square: Utilização da biblioteca i18n para multiplas linguagens  
-:white_medium_square: Expandir a tabela para exibição de mais detalhes
+:white_medium_square: Expandir a tabela para exibição de mais detalhes  
 :white_check_mark: Vue router  
 :white_check_mark: Vuex para gerenciar estado geral da aplicação e comunicação dos componentes
 
