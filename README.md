@@ -65,7 +65,7 @@ Apesar se não usar outro método além do GET para consumir essa API, aprendi o
 
 ## :satellite: Futuras implementações
 
-:white_medium_square: Substituir o uso do `fetch` pela bibliota `axios`  
+:white_medium_square: Substituir o uso do `fetch` pela biblioteca `axios`  
 :white_medium_square: Melhorar a tela inicial. Necessário deixar mais intuitiva e clara  
 :white_medium_square: Melhores praticas para gerenciar as chamadas/endpoints da API  
 :white_medium_square: Utilização da biblioteca i18n para multiplas linguagens  
