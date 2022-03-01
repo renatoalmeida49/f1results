@@ -11,7 +11,7 @@ F1 Results permite a você acompanhar os resultados das corridas da temporada co
 - [Visão Geral](#visao-geral)
   - [O problema](#o-problema)
   - [Prints](#prints)
-  - [Links](#link)
+  - [Links](#links)
 - [Meu processo](#meu-processo)
   - [Construção](#construcao)
   - [O que aprendi](#o-que-aprendi)
@@ -40,7 +40,7 @@ Não há print para um resultado mobile devido ao tamanho da imagem. Mas o proje
  
 - Projeto online: [Netlify](https://infallible-thompson-af8456.netlify.app/)  
   
-## :pencil2: Meu processo  
+## :pencil2: Meu processo 
   
 ### Construção  
   
@@ -65,12 +65,12 @@ Apesar se não usar outro método além do GET para consumir essa API, aprendi o
 
 ## :satellite: Futuras implementações
 
-:white_medium_square: Substituir o uso do `fetch` pela bibliota `axios`  
+:white_medium_square: Substituir o uso do `fetch` pela biblioteca `axios`  
 :white_medium_square: Melhorar a tela inicial. Necessário deixar mais intuitiva e clara  
-:white_medium_square: Exibir mais estatísicas do pilotos e campeonato. Informações essas que podem ser extraídas da API  
 :white_medium_square: Melhores praticas para gerenciar as chamadas/endpoints da API  
 :white_medium_square: Utilização da biblioteca i18n para multiplas linguagens  
-:white_medium_square: Expandir a tabela para exibição de mais detalhes
+:white_medium_square: Expandir a tabela para exibição de mais detalhes  
+:white_medium_square: Rota 404  
 :white_check_mark: Vue router  
 :white_check_mark: Vuex para gerenciar estado geral da aplicação e comunicação dos componentes
 
