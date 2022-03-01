@@ -36,7 +36,7 @@ export default {
 <style lang="scss">
 @font-face {
   font-family: "Formula1";
-  src: url('./fonts/Formula1/Formula1-Regular_web_0.ttf');
+  src: url('./assets/fonts/Formula1/Formula1-Regular_web_0.ttf');
 }
 
 * {

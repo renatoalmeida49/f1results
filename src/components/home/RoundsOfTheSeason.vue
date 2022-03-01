@@ -53,7 +53,6 @@ export default {
   watch: {
     year() {
       this.racesOfSeason()
-      this.forceRender()
     }
   },
 
