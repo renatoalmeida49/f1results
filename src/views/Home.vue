@@ -1,45 +1,47 @@
 <template>
-<div>
-    <HowToUse v-if="year === ''" />
+  <div>
+    <HowToUse />
 
-    <v-container v-else>
-        <RoundsOfTheSeason />
+    <!-- <v-container v-else>
+      <RoundsOfTheSeason />
 
-        <v-row justify="space-between">
-            <v-col xl="4" lg="6" md="6" sm="12" cols="12">
-                <QualifyingResult />
-            </v-col>
-            <v-col xl="4" lg="6" md="6" sm="12" cols="12">
-                <RaceResult />
-            </v-col>
-            <v-col xl="4" lg="12" md="12" sm="12" cols="12">
-                <ChampionshipAfterRace />
-            </v-col>
-        </v-row>
-    </v-container>
-</div>
+      <v-row justify="space-between">
+        <v-col xl="4" lg="6" md="6" sm="12" cols="12">
+          <QualifyingResult />
+        </v-col>
+        <v-col xl="4" lg="6" md="6" sm="12" cols="12">
+          <RaceResult />
+        </v-col>
+        <v-col xl="4" lg="12" md="12" sm="12" cols="12">
+          <ChampionshipAfterRace />
+        </v-col>
+      </v-row>
+    </v-container> -->
+  </div>
 </template>
 
 <script>
-import ChampionshipAfterRace from '../components/home/ChampionshipAfterRace'
-import QualifyingResult from '../components/home/QualifyingResult'
-import RaceResult from '../components/home/RaceResult'
-import RoundsOfTheSeason from '../components/home/RoundsOfTheSeason'
+// import ChampionshipAfterRace from '../components/home/ChampionshipAfterRace'
+// import QualifyingResult from '../components/home/QualifyingResult'
+// import RaceResult from '../components/home/RaceResult'
+// import RoundsOfTheSeason from '../components/home/RoundsOfTheSeason'
 import HowToUse from '../components/home/HowToUse'
 
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-    name: "Home",
-    components: {
-        HowToUse,
-        RoundsOfTheSeason,
-        QualifyingResult,
-        RaceResult,
-        ChampionshipAfterRace
-    },
-    computed: {
-        ...mapGetters(['year'])
-    },
+  name: "Home",
+
+  components: {
+    HowToUse,
+    // RoundsOfTheSeason,
+    // QualifyingResult,
+    // RaceResult,
+    // ChampionshipAfterRace
+  },
+
+  computed: {
+    ...mapGetters(['year'])
+  },
 }
 </script>

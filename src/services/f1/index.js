@@ -11,12 +11,14 @@ export const allSeasons = async () => {
 }
 
 export const racesOfTheSeason = async (year) => {
-  try {
-    const response = await API.get(`${year}.json`);
+  if (year) {
+    try {
+      const response = await API.get(`${year}.json`);
 
-    return response.data.MRData.RaceTable.Races;
-  } catch (error) {
-    console.error("Something went wrong!", error);
+      return response.data.MRData.RaceTable.Races;
+    } catch (error) {
+      console.error("Something went wrong!", error);
+    }
   }
 }
 

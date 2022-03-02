@@ -1,18 +1,19 @@
 <template>
-<div>
+  <div>
     <v-select
       :items="years"
       label="Escolha um ano"
+      :value="getValue"
       color="blue"
       elevation="10"
-      v-model="selected"
+      @change="updateData"
     >
     </v-select>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { allSeasons } from "@/services/f1";
 
 export default {
@@ -20,7 +21,6 @@ export default {
 
   data() {
     return {
-      selected: "",
       years: []
     }
   },
@@ -29,12 +29,17 @@ export default {
     this.getSeasons()
   },
 
-  watch: {
-    selected() {
-      this.newYear({year: this.selected})
+  computed: {
+    ...mapGetters(['year']),
+
+    getValue() {
+      if (this.year) {
+        return this.year
+      }
+
+      return "Escolha um ano";
     }
   },
-    
 
   methods: {
     ...mapActions(['newYear']),
@@ -47,6 +52,13 @@ export default {
           }).reverse() 
         })
     },
+
+    updateData(event) {
+      this.newYear({year: event})
+
+      if (this.$route.path != "/results")
+        this.$router.push("/results");
+    }
   },
     
 }
