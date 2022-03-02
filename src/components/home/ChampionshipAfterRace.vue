@@ -71,7 +71,7 @@ export default {
         return {
           posicao: driver.position,
           nome: `${driver.Driver.givenName} ${driver.Driver.familyName}`,
-          construtor: driver.Constructors[0].name,
+          construtor: driver.Constructors[0]?.name || "",
           pontuacao: driver.points
         }
       })

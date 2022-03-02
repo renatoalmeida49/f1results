@@ -16,10 +16,10 @@
           {{n}}<br>
 
           <img
-              :src="getFlag(n)"
-              width="25"
-              class="ml-2"
-              :alt=n
+            :src="getFlag(n) || ''"
+            width="25"
+            class="ml-2"
+            :alt=n
           />
         </v-tab>
       </v-tabs>
@@ -34,7 +34,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
+import { racesOfTheSeason } from "@/services/f1";
 
 export default {
   name: "RoundsOfTheSeason",
@@ -74,16 +75,12 @@ export default {
       let country = this.races[n - 1].Circuit.Location.country
       let images = require.context('../../assets/flags/', false, /\.png$/)
 
-      return images('./' + country.toLowerCase() + ".png")
+      return images('./' + country.toLowerCase().replace(" ", "-") + ".png")
     },
 
     async racesOfSeason() {
-      await fetch(`https://ergast.com/api/f1/${this.year}.json`)
-        .then(response => response.json())
-        .then(json => {
-          this.races = json.MRData.RaceTable.Races
-          this.roundSelected = this.races[0].raceName
-        })
+      this.races = await racesOfTheSeason(this.year);
+      this.roundSelected = this.races[0].raceName
     },
   },
 }

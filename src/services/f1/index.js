@@ -10,6 +10,16 @@ export const allSeasons = async () => {
   }
 }
 
+export const racesOfTheSeason = async (year) => {
+  try {
+    const response = await API.get(`${year}.json`);
+
+    return response.data.MRData.RaceTable.Races;
+  } catch (error) {
+    console.error("Something went wrong!", error);
+  }
+}
+
 export const qualifying = async (year, round) => {
   try {
     const response = await API.get(`${year}/${round}/qualifying.json`);
@@ -34,7 +44,7 @@ export const championship = async (year, round) => {
   try {
     const response = await API.get(`${year}/${round}/driverstandings.json`);
 
-    return response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+    return response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings || [];
   } catch (error) {
     console.error("Something went wrong!", error);
   }
