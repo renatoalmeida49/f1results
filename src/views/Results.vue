@@ -21,6 +21,7 @@ import ChampionshipAfterRace from '../components/home/ChampionshipAfterRace'
 import QualifyingResult from '../components/home/QualifyingResult'
 import RaceResult from '../components/home/RaceResult'
 import RoundsOfTheSeason from '../components/home/RoundsOfTheSeason'
+// import { raceStats } from "@/services/f1";
 
 import { mapGetters } from "vuex";
 
@@ -33,6 +34,14 @@ export default {
     RaceResult,
     ChampionshipAfterRace
   },
+  
+  // data() {
+  //   return {
+  //     qualifying: [],
+  //     race: [],
+  //     standings: [],
+  //   }
+  // },
 
   created() {
     if(!this.year)
@@ -42,5 +51,26 @@ export default {
   computed: {
     ...mapGetters(['year', 'round'])
   },
+
+  // watch: {
+  //   year() {
+  //     this.getRaceStats()
+  //   },
+
+  //   round() {
+  //     this.getRaceStats()
+  //   }
+  // },
+
+  // methods: {
+  //   async getRaceStats() {
+  //     await raceStats(this.year, this.round)
+  //       .then(response => {
+  //         this.qualifying = response.qualifying
+  //         this.race = response.race
+  //         this.standings = response.standings
+  //       })
+  //   }
+  // }
 }
 </script>

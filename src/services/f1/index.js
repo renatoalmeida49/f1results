@@ -51,3 +51,21 @@ export const championship = async (year, round) => {
     console.error("Something went wrong!", error);
   }
 }
+
+export const raceStats = async (year, round) => {
+  try {
+    const response = await Promise.all([
+      API.get(`${year}/${round}/qualifying.json`),
+      API.get(`${year}/${round}/results.json`),
+      API.get(`${year}/${round}/driverstandings.json`)
+    ])
+
+    return {
+      qualifying: response[0].data.MRData.RaceTable.Races[0]?.QualifyingResults || [],
+      race: response[1].data.MRData.RaceTable.Races[0]?.Results || [],
+      standings: response[2].data.MRData.StandingsTable.StandingsLists[0].DriverStandings || [],
+    };
+  } catch (error) {
+    console.error("Something went wrong!", error);
+  }
+}

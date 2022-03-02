@@ -3,17 +3,22 @@ import Router from "vue-router"
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: "/",
-      name: "Home",
-      component: () => import("@/views/Home")
-    },
-    {
-      path: '/results',
-      name: "Results",
-      component: () => import("@/views/Results")
-    }
-  ]
-})
+const routes = [
+  {
+    path: "/",
+    name: "Home",
+    component: () => import("@/views/Home")
+  },
+  {
+    path: "/results",
+    name: "Results",
+    component: () => import("@/views/Results")
+  }
+]
+
+const router = new Router({
+  mode: "history",
+  routes,
+});
+
+export default router;
