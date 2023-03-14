@@ -4,9 +4,11 @@ export const allSeasons = async () => {
   try {
     const response = await API.get("seasons.json?limit=200");
 
-    return response.data.MRData.SeasonTable.Seasons;
+    return response.data.MRData.SeasonTable.Seasons.map(season => season.season).reverse();
   } catch (error) {
-    console.error("Something went wrong!", error);
+    console.error("Something went wrong getting all seasons!", error);
+    
+    return []
   }
 }
 

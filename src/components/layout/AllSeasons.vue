@@ -47,9 +47,7 @@ export default {
     getSeasons() {
       allSeasons()
         .then(response => {
-          this.years = response.map((season) => {
-              return season.season
-          }).reverse() 
+          this.years = response
         })
     },
 
