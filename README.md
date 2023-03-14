@@ -69,6 +69,7 @@ Apesar se não usar outro método além do GET para consumir essa API, aprendi o
 :white_medium_square: Utilização da biblioteca i18n para multiplas linguagens  
 :white_medium_square: Expandir a tabela para exibição de mais detalhes  
 :white_medium_square: Rota 404  
+:white_check_mark: Implementação de testes  
 :white_check_mark: Melhores praticas para gerenciar as chamadas/endpoints da API  
 :white_check_mark: Substituir o uso do `fetch` pela biblioteca `axios`  
 :white_check_mark: Vue router  
