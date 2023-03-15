@@ -19,7 +19,9 @@ export const racesOfTheSeason = async (year) => {
 
       return response.data.MRData.RaceTable.Races;
     } catch (error) {
-      console.error("Something went wrong!", error);
+      console.error("Something went wrong getting races of the season!", error);
+
+      return []
     }
   }
 }
