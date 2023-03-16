@@ -50,7 +50,18 @@ export const championship = async (year, round) => {
   try {
     const response = await API.get(`${year}/${round}/driverstandings.json`);
 
-    return response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings || [];
+    const driversStanding = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings || [];
+
+    const formated = driversStanding.map(driver => {
+      return {
+        posicao: driver.position,
+        nome: `${driver.Driver.givenName} ${driver.Driver.familyName}`,
+        construtor: driver.Constructors[0]?.name || "",
+        pontuacao: driver.points
+      }
+    })
+
+    return formated
   } catch (error) {
     console.error("Something went wrong!", error);
   }

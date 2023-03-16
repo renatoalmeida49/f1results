@@ -63,18 +63,7 @@ export default {
     async getDriverStandings() {
       this.loading = true
 
-      this.drivers = []
-
-      this.driverStandings = await championship(this.year, this.round);
-
-      this.drivers = this.driverStandings.map(driver => {
-        return {
-          posicao: driver.position,
-          nome: `${driver.Driver.givenName} ${driver.Driver.familyName}`,
-          construtor: driver.Constructors[0]?.name || "",
-          pontuacao: driver.points
-        }
-      })
+      this.drivers = await championship(this.year, this.round);
 
       this.loading = false
     },
