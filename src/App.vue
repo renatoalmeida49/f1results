@@ -9,7 +9,7 @@
       <v-row justify="center">
         <AllSeasons />
       </v-row>
-      <!--teste de commit e push-->
+
       <router-view></router-view>
       
     </v-main>
